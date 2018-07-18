@@ -1,0 +1,46 @@
+@import '~antd/dist/antd.css';
+
+.green {
+  .price span {
+    color: green;
+
+    &::after {
+      position: absolute;
+      right: 0;
+      font-family: anticon !important;
+      content: "\E607";
+    }
+  }
+}
+
+.red {
+  .price span {
+    color: red;
+
+    &::after {
+      position: absolute;
+      right: 0;
+      font-family: anticon !important;
+      content: "\E606";
+    }
+  }
+}
+
+.price {
+  span {
+    position: relative;
+    padding-right: 20px;
+  }
+}
+
+.text-red {
+  color: red;
+}
+
+.text-green {
+  color: green;
+}
+
+.coin-logo {
+  margin-right: 10px;
+}
