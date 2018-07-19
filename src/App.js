@@ -6,7 +6,7 @@ import { Table } from 'antd';
 import NumberFormat from 'react-number-format';
 
 const CRYPTOCOMPARE_API = "https://streamer.cryptocompare.com/";
-const COINMARKET_API = "https://api.coinmarketcap.com/v1/ticker/?limit=10";
+const COINMARKET_API = "https://api.coinmarketcap.com/v1/ticker/";
 
 class App extends Component {
   constructor(props) {
@@ -14,8 +14,11 @@ class App extends Component {
 
     this.state = {
       coins: {},
+      pagination: {},
+      loading: true,
+      cryptoIO: io.connect(CRYPTOCOMPARE_API),
       columns: [{
-        title: '',
+        title: '#',
         dataIndex: 'rank',
         key: 'rank',
         width: '50px'
@@ -35,7 +38,7 @@ class App extends Component {
         dataIndex: 'price_usd',
         key: 'price',
         className: 'price',
-        render: (data) => <span>{data}</span>
+        render: (data) => <span>${data}</span>
       },
       {
         title: 'Volume (24h)',
@@ -53,68 +56,94 @@ class App extends Component {
     };
   }
 
-  getAllCoins = () => {
-    axios.get(COINMARKET_API).then((response) => {
+  getAllCoins = (start = 0, limit = 10) => {
+    axios.get(`${COINMARKET_API}?start=${start}&limit=${limit}`).then((response) => {
+      this.setState({ loading: true });
+
       if (response.status === 200) {
 
-        let coins = {}
+        let coins = {};
+        let subs = [];
+        const pagination = { ...this.state.pagination };
 
-        console.log(response)
+        pagination.total = 100;
 
         response.data.map((coin) => {
           coins[coin.symbol] = coin;
           return null
         })
 
-        this.setState({coins: coins})
-        this.subscribeCryptoStream()
+        Object.keys(this.state.coins).map((key) => {
+          subs.push(`5~CCCAGG~${key}~USD`)
+          return null
+        })
+
+        Promise.all([this.unsubscribeCryptoStream(subs)])
+          .then(() => {
+            this.setState({loading: false, coins: coins, pagination})
+            this.subscribeCryptoStream(subs)
+          })
       }
     })
   }
 
-  subscribeCryptoStream = () => {
-    let subs = [];
-    let cryptoIO = io.connect(CRYPTOCOMPARE_API);
-
-    Object.keys(this.state.coins).map((key) => {
-      subs.push(`5~CCCAGG~${key}~USD`)
-      return null
-    })
-
-    cryptoIO.emit("SubAdd", { "subs": subs })
-    cryptoIO.on("m", (message) => {
+  subscribeCryptoStream = (subs) => {
+    this.state.cryptoIO.emit("SubAdd", { "subs": subs })
+    this.state.cryptoIO.on("m", (message) => {
       this.updateCoin(message)
     })
+  }
+
+  unsubscribeCryptoStream  = (subs) => {
+    this.state.cryptoIO.emit("SubRemove", { "subs": subs })
   }
 
   updateCoin = (message) => {
     message = message.split("~")
     let coins = Object.assign({}, this.state.coins)
 
-    if ((message[4] === "1") || (message[4] === "2")) {
+    if (coins[message[2]]) {
+      if ((message[4] === "1") || (message[4] === "2")) {
 
-      if (message[4] === "1") {
-        coins[message[2]].goUp = true
-        coins[message[2]].goDown = false
-      }
-      else if (message[4] === "2") {
-        coins[message[2]].goUp = false
-        coins[message[2]].goDown = true
-      }
-      else {
-        coins[message[2]].goUp = false
-        coins[message[2]].goDown = false
-      }
+        if (message[4] === "1") {
+          coins[message[2]].goUp = true
+          coins[message[2]].goDown = false
+        }
+        else if (message[4] === "2") {
+          coins[message[2]].goUp = false
+          coins[message[2]].goDown = true
+        }
+        else {
+          coins[message[2]].goUp = false
+          coins[message[2]].goDown = false
+        }
 
-      coins[message[2]].price_usd = message[5]
-      this.setState({ "coins": coins })
+        coins[message[2]].price_usd = message[5]
+        this.setState({ "coins": coins })
 
-      setTimeout(() => {
-        coins = Object.assign({}, this.state.coins)
-        coins[message[2]].goUp = false
-        coins[message[2]].goDown = false
-        this.setState({coins: coins})
-      }, 1000)
+        setTimeout(() => {
+          coins = Object.assign({}, this.state.coins)
+
+          if (coins[message[2]]) {
+            coins[message[2]].goUp = false
+            coins[message[2]].goDown = false
+            this.setState({coins: coins})
+          }
+        }, 600)
+      }
+    }
+  }
+
+  handleTableChange = (pagination) => {
+    const pager = { ...this.state.pagination };
+    pager.current = pagination.current;
+
+    this.setState({pagination: pager});
+
+    if (pager.current === 1) {
+      this.getAllCoins(0 , 10);
+    } else {
+      this.getAllCoins((pager.current - 1) * 10, 10);
     }
   }
 
@@ -141,7 +170,15 @@ class App extends Component {
 
       return (
         <div>
-          <Table columns={columns} dataSource={Array.from(data)} rowKey="symbol" pagination={false} rowClassName={record => this.getTickStyle(record)}/>
+          <Table
+          columns={columns}
+          dataSource={Array.from(data)}
+          rowKey='rank'
+          pagination={this.state.pagination}
+          loading={this.state.loading}
+          onChange={this.handleTableChange}
+          rowClassName={record => this.getTickStyle(record)}
+          />
         </div>
       )
     }
