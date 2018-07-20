@@ -36,6 +36,12 @@ class CurrencyTable extends Component {
         key: 'symbol'
       },
       {
+        title: 'Market Cap',
+        dataIndex: 'market_cap_usd',
+        key: 'market_cap_usd',
+        render: (data) => <NumberFormat value={data} thousandSeparator=' ' decimalSeparator='false' displayType={'text'} prefix={'$'} />
+      },
+      {
         title: 'Price',
         dataIndex: 'price_usd',
         key: 'price',
@@ -46,7 +52,7 @@ class CurrencyTable extends Component {
         title: 'Volume (24h)',
         dataIndex: '24h_volume_usd',
         key: 'volume',
-        render: (data) => <NumberFormat value={data} format="$# ### ### ###" displayType={'text'} decimalprecision={0} thousandseparator='true' />
+        render: (data) => <NumberFormat value={data} thousandSeparator=' ' decimalSeparator='false' displayType={'text'} prefix={'$'} />
       },
       {
         title: 'Change (24h)',
@@ -74,6 +80,8 @@ class CurrencyTable extends Component {
           coins[coin.symbol] = coin;
           return null
         })
+
+        console.log(response.data)
 
         Object.keys(coins).map((key) => {
           subs.push(`5~CCCAGG~${key}~USD`)
