@@ -16,6 +16,7 @@ class CurrencyTable extends Component {
     this.state = {
       coins: {},
       pagination: {},
+      subs: [],
       loading: true,
       cryptoIO: io.connect(CRYPTOCOMPARE_API),
       columns: [{
@@ -74,16 +75,15 @@ class CurrencyTable extends Component {
           return null
         })
 
-        this.setState({loading: false, coins: coins, pagination})
-
-        Object.keys(this.state.coins).map((key) => {
+        Object.keys(coins).map((key) => {
           subs.push(`5~CCCAGG~${key}~USD`)
           return null
         })
 
-        Promise.all([this.unsubscribeCryptoStream(subs)])
+        Promise.all([this.unsubscribeCryptoStream(this.state.subs)])
           .then(() => {
-            this.subscribeCryptoStream(subs)
+            this.setState({loading: false, coins: coins, pagination, subs: subs})
+            this.subscribeCryptoStream(this.state.subs)
           })
       }
     })
