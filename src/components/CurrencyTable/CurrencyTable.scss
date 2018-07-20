@@ -1,8 +1,8 @@
-@import '~antd/dist/antd.css';
+@import '../../styles/settings/variables';
 
 .is-up {
   .price span {
-    color: green;
+    color: $success;
 
     &::after {
       position: absolute;
@@ -15,7 +15,7 @@
 
 .is-down {
   .price span {
-    color: red;
+    color: $danger;
 
     &::after {
       position: absolute;
@@ -34,11 +34,11 @@
 }
 
 .text-red {
-  color: red;
+  color: $danger;
 }
 
 .text-green {
-  color: green;
+  color: $success;
 }
 
 .coin-logo {

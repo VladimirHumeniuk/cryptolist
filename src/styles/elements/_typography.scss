@@ -1,0 +1,10 @@
+@for $index from 1 through 6 {
+  h#{$index}{
+    font-family: $lato;
+  }
+}
+
+.heading {
+  margin-top: 30px;
+  margin-bottom: 30px;
+}

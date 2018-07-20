@@ -1,5 +1,3 @@
-@import url(~antd/dist/antd.css);
-@import url("https://fonts.googleapis.com/css?family=Lato|Source+Sans+Pro");
 /*
 Document
 
@@ -13,7 +11,8 @@ Document
 *,
 *::before,
 *::after {
-  box-sizing: border-box; }
+  box-sizing: border-box;
+}
 
 html {
   font-family: sans-serif;
@@ -21,15 +20,18 @@ html {
   -webkit-text-size-adjust: 100%;
   -ms-text-size-adjust: 100%;
   -ms-overflow-style: scrollbar;
-  -webkit-tap-highlight-color: transparent; }
+  -webkit-tap-highlight-color: transparent;
+}
 
 /* IE10+ doesn't honor `<meta name="viewport">` in some cases. */
 @-ms-viewport {
-  width: device-width; }
+  width: device-width;
+}
 
 /* Shim for "new" HTML5 structural elements to display correctly (IE10, older browsers) */
 article, aside, dialog, figcaption, figure, footer, header, hgroup, main, nav, section {
-  display: block; }
+  display: block;
+}
 
 /*
 Body
@@ -47,7 +49,8 @@ body {
   line-height: 1.5;
   color: #212529;
   text-align: left;
-  background-color: #fff; }
+  background-color: #fff;
+}
 
 /*
 Suppress the focus outline on elements that cannot be accessed via keyboard.
@@ -57,7 +60,8 @@ might still respond to pointer events.
 Credit: https://github.com/suitcss/base
 */
 [tabindex="-1"]:focus {
-  outline: none !important; }
+  outline: none !important;
+}
 
 /*
 Typography
@@ -69,7 +73,8 @@ margin for easier control within type scales as it avoids margin collapsing.
 */
 h1, h2, h3, h4, h5, h6 {
   margin-top: 0;
-  margin-bottom: .5rem; }
+  margin-bottom: .5rem;
+}
 
 /*
 Reset margins on paragraphs
@@ -79,45 +84,54 @@ bottom margin to use `rem` units instead of `em`.
 */
 p {
   margin-top: 0;
-  margin-bottom: 1rem; }
+  margin-bottom: 1rem;
+}
 
 address {
   margin-bottom: 1rem;
   font-style: normal;
-  line-height: inherit; }
+  line-height: inherit;
+}
 
 ol,
 ul,
 dl {
   margin-top: 0;
-  margin-bottom: 1rem; }
+  margin-bottom: 1rem;
+}
 
 ol ol,
 ul ul,
 ol ul,
 ul ol {
-  margin-bottom: 0; }
+  margin-bottom: 0;
+}
 
 blockquote {
-  margin: 0 0 1rem; }
+  margin: 0 0 1rem;
+}
 
 b,
 strong {
-  font-weight: bolder; }
+  font-weight: bolder;
+}
 
 small {
-  font-size: 80%; }
+  font-size: 80%;
+}
 
 /* Links */
 a {
   color: #007bff;
   text-decoration: none;
   background-color: transparent;
-  -webkit-text-decoration-skip: objects; }
+  -webkit-text-decoration-skip: objects;
+}
 
 a:hover {
   color: #0056b3;
-  text-decoration: underline; }
+  text-decoration: underline;
+}
 
 /*
 And undo these styles for placeholder links/named anchors (without href)
@@ -128,14 +142,17 @@ See https://github.com/twbs/bootstrap/issues/19402
 */
 a:not([href]):not([tabindex]) {
   color: inherit;
-  text-decoration: none; }
+  text-decoration: none;
+}
 
 a:not([href]):not([tabindex]):focus, a:not([href]):not([tabindex]):hover {
   color: inherit;
-  text-decoration: none; }
+  text-decoration: none;
+}
 
 a:not([href]):not([tabindex]):focus {
-  outline: 0; }
+  outline: 0;
+}
 
 /* Code */
 pre,
@@ -143,20 +160,24 @@ code,
 kbd,
 samp {
   font-family: monospace, monospace;
-  font-size: 1em; }
+  font-size: 1em;
+}
 
 pre {
   margin-top: 0;
   margin-bottom: 1rem;
-  overflow: auto; }
+  overflow: auto;
+}
 
 /* Images and content */
 img {
   vertical-align: middle;
-  border-style: none; }
+  border-style: none;
+}
 
 svg:not(:root) {
-  overflow: hidden; }
+  overflow: hidden;
+}
 
 /*
 Avoid 300ms click delay on touch devices that support the `touch-action` CSS property.
@@ -179,27 +200,32 @@ select,
 summary,
 textarea {
   -ms-touch-action: manipulation;
-  touch-action: manipulation; }
+      touch-action: manipulation;
+}
 
 /* Tables */
 table {
-  border-collapse: collapse; }
+  border-collapse: collapse;
+}
 
 caption {
   padding-top: 0.75rem;
   padding-bottom: 0.75rem;
   color: #868e96;
   text-align: left;
-  caption-side: bottom; }
+  caption-side: bottom;
+}
 
 th {
-  text-align: inherit; }
+  text-align: inherit;
+}
 
 /* Forms */
 label {
   /* Allow labels to use `margin` for spacing. */
   display: inline-block;
-  margin-bottom: .5rem; }
+  margin-bottom: .5rem;
+}
 
 /* Work around a Firefox/IE bug where the transparent `button` background
 results in a loss of the default `button` focus styles.
@@ -207,7 +233,8 @@ results in a loss of the default `button` focus styles.
 Credit: https://github.com/suitcss/base/ */
 button:focus {
   outline: 1px dotted;
-  outline: 5px auto -webkit-focus-ring-color; }
+  outline: 5px auto -webkit-focus-ring-color;
+}
 
 input,
 button,
@@ -217,15 +244,18 @@ textarea {
   margin: 0;
   font-family: inherit;
   font-size: inherit;
-  line-height: inherit; }
+  line-height: inherit;
+}
 
 button,
 input {
-  overflow: visible; }
+  overflow: visible;
+}
 
 button,
 select {
-  text-transform: none; }
+  text-transform: none;
+}
 
 /*
 1. Prevent a WebKit bug where (2) destroys native `audio` and `video`
@@ -236,7 +266,8 @@ button,
 html [type="button"],
 [type="reset"],
 [type="submit"] {
-  -webkit-appearance: button; }
+  -webkit-appearance: button;
+}
 
 /* Remove inner border and padding from Firefox, but don't restore the outline like Normalize. */
 button::-moz-focus-inner,
@@ -244,14 +275,14 @@ button::-moz-focus-inner,
 [type="reset"]::-moz-focus-inner,
 [type="submit"]::-moz-focus-inner {
   padding: 0;
-  border-style: none; }
+  border-style: none;
+}
 
 input[type="radio"],
 input[type="checkbox"] {
-  box-sizing: border-box;
-  /* 1. Add the correct box sizing in IE 10- */
-  padding: 0;
-  /* 2. Remove the padding in IE 10- */ }
+  box-sizing: border-box; /* 1. Add the correct box sizing in IE 10- */
+  padding: 0; /* 2. Remove the padding in IE 10- */
+}
 
 /*
 Remove the default appearance of temporal inputs to avoid a Mobile Safari
@@ -264,13 +295,15 @@ input[type="date"],
 input[type="time"],
 input[type="datetime-local"],
 input[type="month"] {
-  -webkit-appearance: listbox; }
+  -webkit-appearance: listbox;
+}
 
 textarea {
   /* Remove the default vertical scrollbar in IE. */
   overflow: auto;
   /* Textareas should really only resize vertically so they don't break their (horizontal) containers. */
-  resize: vertical; }
+  resize: vertical;
+}
 
 fieldset {
   /*
@@ -284,7 +317,8 @@ fieldset {
   /* Reset the default outline behavior of fieldsets so they don't affect page layout. */
   padding: 0;
   margin: 0;
-  border: 0; }
+  border: 0;
+}
 
 /* 1. Correct the text wrapping in Edge and IE. */
 /* 2. Correct the color inheritance from `fieldset` elements in IE. */
@@ -297,29 +331,35 @@ legend {
   font-size: 1.5rem;
   line-height: inherit;
   color: inherit;
-  white-space: normal; }
+  white-space: normal;
+}
+
 
 progress {
   /* Add the correct vertical alignment in Chrome, Firefox, and Opera. */
-  vertical-align: baseline; }
+  vertical-align: baseline;
+}
 
 /* Correct the cursor style of increment and decrement buttons in Chrome.
  */
 [type="number"]::-webkit-inner-spin-button,
 [type="number"]::-webkit-outer-spin-button {
-  height: auto; }
+  height: auto;
+}
 
 [type="search"] {
   /*
   This overrides the extra rounded corners on search inputs in iOS so you can properly style them.
   */
   outline-offset: -2px;
-  -webkit-appearance: none; }
+  -webkit-appearance: none;
+}
 
 /* Remove the inner padding and cancel buttons in Chrome and Safari on macOS. */
 [type="search"]::-webkit-search-cancel-button,
 [type="search"]::-webkit-search-decoration {
-  -webkit-appearance: none; }
+  -webkit-appearance: none;
+}
 
 /*
 1. Correct the inability to style clickable types in iOS and Safari.
@@ -327,105 +367,26 @@ progress {
 */
 ::-webkit-file-upload-button {
   font: inherit;
-  -webkit-appearance: button; }
+  -webkit-appearance: button;
+}
+
 
 /* Correct element displays */
 output {
-  display: inline-block; }
+  display: inline-block;
+}
 
 summary {
   /* Add the correct display in all browsers */
-  display: list-item; }
+  display: list-item;
+}
 
 template {
   /* Add the correct display in IE */
-  display: none; }
+  display: none;
+}
 
 /* Always hide an element with the `hidden` HTML attribute */
 [hidden] {
-  display: none !important; }
-
-.container {
-  padding-left: 15px;
-  padding-right: 15px;
-  width: 100%;
-  margin: 0 auto; }
-  @media (min-width: 1012px) {
-    .container {
-      max-width: 992px; } }
-  @media (min-width: 1280px) {
-    .container {
-      max-width: 1170px; } }
-
-h1 {
-  font-family: "Lato", sans-serif; }
-
-h2 {
-  font-family: "Lato", sans-serif; }
-
-h3 {
-  font-family: "Lato", sans-serif; }
-
-h4 {
-  font-family: "Lato", sans-serif; }
-
-h5 {
-  font-family: "Lato", sans-serif; }
-
-h6 {
-  font-family: "Lato", sans-serif; }
-
-.heading {
-  margin-top: 30px;
-  margin-bottom: 30px; }
-
-.text-center {
-  text-align: center; }
-
-.mt-1 {
-  margin-top: 10px; }
-
-.mr-1 {
-  margin-right: 10px; }
-
-.mb-1 {
-  margin-bottom: 10px; }
-
-.ml-1 {
-  margin-left: 10px; }
-
-.mt-2 {
-  margin-top: 20px; }
-
-.mr-2 {
-  margin-right: 20px; }
-
-.mb-2 {
-  margin-bottom: 20px; }
-
-.ml-2 {
-  margin-left: 20px; }
-
-.mt-3 {
-  margin-top: 30px; }
-
-.mr-3 {
-  margin-right: 30px; }
-
-.mb-3 {
-  margin-bottom: 30px; }
-
-.ml-3 {
-  margin-left: 30px; }
-
-.mt-4 {
-  margin-top: 40px; }
-
-.mr-4 {
-  margin-right: 40px; }
-
-.mb-4 {
-  margin-bottom: 40px; }
-
-.ml-4 {
-  margin-left: 40px; }
+  display: none !important;
+}

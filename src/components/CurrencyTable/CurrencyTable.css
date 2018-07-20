@@ -1,6 +1,6 @@
-@import url(~antd/dist/antd.css);
+@import url("https://fonts.googleapis.com/css?family=Lato|Source+Sans+Pro");
 .is-up .price span {
-  color: green; }
+  color: #00b649; }
   .is-up .price span::after {
     position: absolute;
     right: 0;
@@ -8,7 +8,7 @@
     content: "\E607"; }
 
 .is-down .price span {
-  color: red; }
+  color: #fd0e75; }
   .is-down .price span::after {
     position: absolute;
     right: 0;
@@ -20,10 +20,10 @@
   padding-right: 20px; }
 
 .text-red {
-  color: red; }
+  color: #fd0e75; }
 
 .text-green {
-  color: green; }
+  color: #00b649; }
 
 .coin-logo {
   margin-right: 10px; }

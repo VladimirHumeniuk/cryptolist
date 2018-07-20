@@ -170,7 +170,10 @@ class CurrencyTable extends Component {
       return coins[key];
     })
 
-      return (
+    return (
+      <div>
+        <h1 className="heading text-center">Top 100 Cryptocurrencies By Market Capitalization</h1>
+
         <Table
         columns={columns}
         dataSource={Array.from(data)}
@@ -180,8 +183,9 @@ class CurrencyTable extends Component {
         onChange={this.handleTableChange}
         rowClassName={record => this.getTickStyle(record)}
         />
-      )
-    }
+      </div>
+    )
+  }
 }
 
 export default CurrencyTable;

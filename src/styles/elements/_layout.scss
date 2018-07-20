@@ -1,0 +1,14 @@
+.container {
+  padding-left: 15px;
+  padding-right: 15px;
+  width: 100%;
+  margin: 0 auto;
+
+  @media (min-width: $lg) {
+    max-width: 992px;
+  }
+
+  @media (min-width: $xl) {
+    max-width: 1170px;
+  }
+}

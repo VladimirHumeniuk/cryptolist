@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
 import CurrencyTable from './components/CurrencyTable/CurrencyTable';
 
-import './App.css';
-
 class App extends Component {
   render() {
     return (
-      <div>
+      <div className="container">
         <CurrencyTable />
       </div>
     )

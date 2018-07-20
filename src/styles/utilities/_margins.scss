@@ -1,0 +1,23 @@
+$m: ();
+
+@for $i from 1 through 4 {
+  $m: append($m, $i * 10px);
+}
+
+@for $index from 1 through 4 {
+  .mt-#{$index}{
+    margin-top: nth($m, $index);
+  }
+
+  .mr-#{$index}{
+    margin-right: nth($m, $index);
+  }
+
+  .mb-#{$index}{
+    margin-bottom: nth($m, $index);
+  }
+
+  .ml-#{$index}{
+    margin-left: nth($m, $index);
+  }
+}
